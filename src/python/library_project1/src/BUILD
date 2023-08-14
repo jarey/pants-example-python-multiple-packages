@@ -1,12 +1,16 @@
 
 
 
-python_library(
+python_distribution(
     name = 'library1',
-    sources = [
-        'library1/**/*.py',
-    ],
+    wheel=True,
+    sdist=True,
     dependencies = [
     ],
+    provides=setup_py(
+        name="library1",
+        version="0.0.1",
+        description="Library test 1",
+    ),
 )
 

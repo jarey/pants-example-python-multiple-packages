@@ -1,7 +1,7 @@
 
-python_binary(
+
+pex_binary(
     name = 'setuppy1',
-    sources = ['setuppy1/cli.py'],
     entry_point = 'setuppy1.cli:main',
     dependencies = [
         ":setuppy1_distribution",
@@ -9,11 +9,8 @@ python_binary(
 )
 
 
-python_library(
+python_distribution(
     name = 'setuppy1_distribution',
-    sources = [
-        'setuppy1/**/*.py',
-    ],
     dependencies = [
     ],
     provides=setup_py(
@@ -25,10 +22,11 @@ python_library(
             "Programming Language :: Python :: 3.7",
             "Programming Language :: Python :: 3.8",
         ],
-    ).with_binaries(
-        # Use a dict for multiple entry_points
-        # https://pants.readme.io/docs/python-setup-py-goal
-        my_setuppy1_command=":setuppy1",
-    ),
+    )
+    #.with_binaries(
+    #    # Use a dict for multiple entry_points
+    #    # https://pants.readme.io/docs/python-setup-py-goal
+    #    my_setuppy1_command=":setuppy1",
+    #),
 )
 

@@ -2,15 +2,10 @@
 # Licensed under the Apache License, Version 2.0 (see LICENSE).
 
 [GLOBAL]
-pants_version = "1.28.0rc0"
-v1 =  false  # Turn off the v1 execution engine.
-v2 = true  # Enable the v2 execution engine.
-v2_ui = true  # Enable the v2 execution engine's terminal-based UI.
-
-backend_packages = []  # Deregister all v1 backends.
+pants_version = "2.16.0"
 
 # List v2 backends here.
-backend_packages2.add = [
+backend_packages.add = [
   'pants.backend.awslambda.python',
   'pants.backend.codegen.protobuf.python',
   'pants.backend.python',
@@ -20,8 +15,8 @@ backend_packages2.add = [
   'pants.backend.python.lint.isort',
 ]
 
-# List v2 plugins here.
-plugins2 = []
+# List plugins here.
+plugins = []
 
 [source]
 # The Python source root is the repo root. See https://pants.readme.io/docs/source-roots.
@@ -35,13 +30,13 @@ root_patterns = [
     "src/python/setuppy_project1/tests",
 ]
 
-[python-setup]
+[python]
 # The default interpreter compatibility for code in this repo. Individual targets can ovverride
 #  this with the `compatibility` field. See
 #  https://pants.readme.io/docs/python-interpreter-compatibility.
 interpreter_constraints = [">=3.7"]
-# Use a lockfile. See https://pants.readme.io/docs/python-third-party-dependencies.
-requirement_constraints = "constraints.txt"
+enable_resolves = true
+resolves = { python-default = "python-default.lock"}
 
 [flake8]
 config = ".flake8"
@@ -49,11 +44,11 @@ config = ".flake8"
 [isort]
 config = [".isort.cfg"]
 
-[pytest]
-args = ["-v"]
-version = "pytest>=5.4"
-pytest_plugins.add = [
-  "pytest-icdiff",
-  "pygments",
-]
-junit_xml_dir = "dist/pytest_results"
+#[pytest]
+#args = ["-v"]
+#version = "pytest>=5.4"
+#pytest_plugins.add = [
+#  "pytest-icdiff",
+#  "pygments",
+#]
+#junit_xml_dir = "dist/pytest_results"
