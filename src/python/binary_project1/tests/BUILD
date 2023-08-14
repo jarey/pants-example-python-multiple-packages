@@ -6,3 +6,7 @@ python_tests(
         "src/python/binary_project1/src:binary1",
     ]
 )
+
+python_test_utils(
+    name="test_utils",
+)

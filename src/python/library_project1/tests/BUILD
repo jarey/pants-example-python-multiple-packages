@@ -8,3 +8,7 @@ python_tests(
         "src/python/library_project1/src:library1",
     ]
 )
+
+python_test_utils(
+    name="test_utils",
+)

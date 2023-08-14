@@ -8,3 +8,7 @@ python_tests(
         "src/python/setuppy_project1/src:setuppy1_distribution",
     ]
 )
+
+python_test_utils(
+    name="test_utils",
+)
