@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=42", "wheel", "build","nuitka", "toml"]
+build-backend = "nuitka.distutils.Build"
+
+[tool.poetry]
+name = "package-a"
+version = "0.1.0.post4.dev0+cc61170"
+description = "Package A"
+license = "MIT"
+authors = ["Gerben Oostra <gerben.oostra@gmail.com>"]
+readme = "README.md"
+include = ["VERSION", "README.md", "CHANGELOG.md"]
+packages = [{ include = "package_a" }]
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+pydantic = "1.10.6"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "0.910"
+flake8 = "4.0.1"
+nuitka = "1.5"
+build = "0.10.0"
+
+[nuitka]
+assume-yes-for-downloads = true
+show-scons = true
+enable-plugin = ["anti-bloat"]
+show-anti-bloat-changes = true
+nofollow-import-to = ["*.tests", "*.distutils"]
+include-package-data = "package_b"
+
